@@ -1450,12 +1450,12 @@ section { padding: 60px 0; }
   }
   /* モバイルのヒーロー：画像と同じ縦横比、横幅100% */
   .hero {
-    aspect-ratio: 864 / 1184;
+    aspect-ratio: 864 / 1536;
     min-height: 0;
     width: 100%;
   }
   .hero-bg-blur {
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center top;
   }
   /* ヒーロー内のテキスト：ヘッダー直下に中央揃え、画面内に確実に収める
