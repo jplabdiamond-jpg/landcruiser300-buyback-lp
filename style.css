@@ -159,6 +159,7 @@ ul, ol { list-style: none; }
   font-size: 14px;
   font-weight: 700;
   color: var(--color-white);
+  text-align: center;
 }
 .globalmenu a:hover { background: var(--color-1st); }
 
@@ -178,7 +179,7 @@ ul, ol { list-style: none; }
 .hero-bg-blur {
   position: absolute;
   inset: 0;
-  background-image: url('land_cruiser_lp_hero_v4.png');
+  background-image: url('land_cruiser_recreated.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -205,7 +206,7 @@ ul, ol { list-style: none; }
   position: absolute;
   top: 24%;
   left: 4%;
-  width: 50%;
+  width: 92%;
   max-width: 560px;
   text-align: left;
   padding: 0;
@@ -279,7 +280,7 @@ ul, ol { list-style: none; }
   position: absolute;
   top: 42%;
   left: 4%;
-  width: 36%;
+  width: 56%;
   max-width: 420px;
   text-align: left;
   padding: 0;
@@ -387,6 +388,40 @@ ul, ol { list-style: none; }
 }
 .reveal.is-show {
   opacity: 1;
+  transform: translateY(0);
+}
+
+/* bounceIn for "特に買取強化中!!" */
+.bouncein {
+  opacity: 0;
+  display: inline-block;
+  transform: scale(0.3);
+}
+.bouncein.bouncein-show {
+  animation: bounceIn 0.95s cubic-bezier(.215,.61,.355,1) both;
+}
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+  20%  { transform: scale3d(1.12, 1.12, 1.12); }
+  40%  { transform: scale3d(0.92, 0.92, 0.92); }
+  60%  { opacity: 1; transform: scale3d(1.04, 1.04, 1.04); }
+  80%  { transform: scale3d(0.98, 0.98, 0.98); }
+  100% { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+/* モバイル専用：ヒーロー直下のコピー＆LINE CTAコンテナ（PCは非表示） */
+.hero-after-mobile { display: none; }
+
+/* 追従LINEボタン：初期は非表示、可視時にフェードイン */
+.float-line {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.float-line.is-visible {
+  opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -784,42 +819,86 @@ section { padding: 60px 0; }
   animation-timing-function: ease-in-out;
   transition: none;
 }
-.flow-list li:nth-child(1) .fno,
-.flow-list li:nth-child(1) h3,
-.flow-list li:nth-child(1) p { animation-name: flowText1; }
-.flow-list li:nth-child(2) .fno,
-.flow-list li:nth-child(2) h3,
-.flow-list li:nth-child(2) p { animation-name: flowText2; }
-.flow-list li:nth-child(3) .fno,
-.flow-list li:nth-child(3) h3,
-.flow-list li:nth-child(3) p { animation-name: flowText3; }
-.flow-list li:nth-child(4) .fno,
-.flow-list li:nth-child(4) h3,
-.flow-list li:nth-child(4) p { animation-name: flowText4; }
-.flow-list li:nth-child(5) .fno,
-.flow-list li:nth-child(5) h3,
-.flow-list li:nth-child(5) p { animation-name: flowText5; }
 
 /* 番号バッジ（.fno）の色変化 */
-@keyframes flowText1 {
+.flow-list li:nth-child(1) .fno { animation-name: flowFno1; }
+.flow-list li:nth-child(2) .fno { animation-name: flowFno2; }
+.flow-list li:nth-child(3) .fno { animation-name: flowFno3; }
+.flow-list li:nth-child(4) .fno { animation-name: flowFno4; }
+.flow-list li:nth-child(5) .fno { animation-name: flowFno5; }
+@keyframes flowFno1 {
   0%, 9%, 96%, 100%   { color: var(--color-1st-lt); border-color: var(--color-1st); background: transparent; }
   16%, 95%            { color: var(--color-white); border-color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.18); }
 }
-@keyframes flowText2 {
+@keyframes flowFno2 {
   0%, 24%, 96%, 100%  { color: var(--color-1st-lt); border-color: var(--color-1st); background: transparent; }
   32%, 95%            { color: var(--color-white); border-color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.18); }
 }
-@keyframes flowText3 {
+@keyframes flowFno3 {
   0%, 39%, 96%, 100%  { color: var(--color-1st-lt); border-color: var(--color-1st); background: transparent; }
   48%, 95%            { color: var(--color-white); border-color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.18); }
 }
-@keyframes flowText4 {
+@keyframes flowFno4 {
   0%, 54%, 96%, 100%  { color: var(--color-1st-lt); border-color: var(--color-1st); background: transparent; }
   64%, 95%            { color: var(--color-white); border-color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.18); }
 }
-@keyframes flowText5 {
+@keyframes flowFno5 {
   0%, 69%, 96%, 100%  { color: var(--color-1st-lt); border-color: var(--color-1st); background: transparent; }
   80%, 95%            { color: var(--color-white); border-color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.18); }
+}
+
+/* h3 見出しは常に白（点灯時のみ淡いグロー） */
+.flow-list li:nth-child(1) h3 { animation-name: flowH3_1; }
+.flow-list li:nth-child(2) h3 { animation-name: flowH3_2; }
+.flow-list li:nth-child(3) h3 { animation-name: flowH3_3; }
+.flow-list li:nth-child(4) h3 { animation-name: flowH3_4; }
+.flow-list li:nth-child(5) h3 { animation-name: flowH3_5; }
+@keyframes flowH3_1 {
+  0%, 9%, 96%, 100% { color: var(--color-white); text-shadow: none; }
+  16%, 95%          { color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+@keyframes flowH3_2 {
+  0%, 24%, 96%, 100% { color: var(--color-white); text-shadow: none; }
+  32%, 95%           { color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+@keyframes flowH3_3 {
+  0%, 39%, 96%, 100% { color: var(--color-white); text-shadow: none; }
+  48%, 95%           { color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+@keyframes flowH3_4 {
+  0%, 54%, 96%, 100% { color: var(--color-white); text-shadow: none; }
+  64%, 95%           { color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+@keyframes flowH3_5 {
+  0%, 69%, 96%, 100% { color: var(--color-white); text-shadow: none; }
+  80%, 95%           { color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+
+/* 本文 p は通常グレー、点灯時は白に */
+.flow-list li:nth-child(1) p { animation-name: flowP1; }
+.flow-list li:nth-child(2) p { animation-name: flowP2; }
+.flow-list li:nth-child(3) p { animation-name: flowP3; }
+.flow-list li:nth-child(4) p { animation-name: flowP4; }
+.flow-list li:nth-child(5) p { animation-name: flowP5; }
+@keyframes flowP1 {
+  0%, 9%, 96%, 100% { color: var(--color-ccc); }
+  16%, 95%          { color: var(--color-white); }
+}
+@keyframes flowP2 {
+  0%, 24%, 96%, 100% { color: var(--color-ccc); }
+  32%, 95%           { color: var(--color-white); }
+}
+@keyframes flowP3 {
+  0%, 39%, 96%, 100% { color: var(--color-ccc); }
+  48%, 95%           { color: var(--color-white); }
+}
+@keyframes flowP4 {
+  0%, 54%, 96%, 100% { color: var(--color-ccc); }
+  64%, 95%           { color: var(--color-white); }
+}
+@keyframes flowP5 {
+  0%, 69%, 96%, 100% { color: var(--color-ccc); }
+  80%, 95%           { color: var(--color-white); }
 }
 .flow-list li:hover {
   transform: translateY(-4px);
@@ -940,38 +1019,37 @@ section { padding: 60px 0; }
   line-height: 1.8;
 }
 
-/* ===== Q&A ===== */
+/* ===== Q&A (アコーディオン) ===== */
 .qa { background: var(--color-gray); }
 .qa-list { display: grid; gap: 14px; }
-.qa-list > div {
+.qa-item {
   background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-gray) 100%);
   border-radius: 2px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.06);
   transition: border-color .3s, box-shadow .3s;
 }
-.qa-list > div:hover {
-  border-color: rgba(200,16,46,0.3);
+.qa-item[open] {
+  border-color: rgba(200,16,46,0.45);
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
-.qa-list dt,
-.qa-list dd {
-  padding: 20px 20px 20px 64px;
+.qa-item summary {
+  padding: 20px 50px 20px 64px;
   position: relative;
   font-size: 14px;
   line-height: 1.85;
-}
-.qa-list dt {
   font-family: 'Shippori Mincho', var(--font-jp);
   font-weight: 700;
   color: var(--color-white);
   background: rgba(255,255,255,0.02);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  cursor: default;
+  cursor: pointer;
   letter-spacing: 0.04em;
+  list-style: none;
+  user-select: none;
 }
-.qa-list dt span,
-.qa-list dd span {
+.qa-item summary::-webkit-details-marker { display: none; }
+.qa-item .qa-q,
+.qa-item .qa-a {
   position: absolute;
   left: 18px;
   top: 18px;
@@ -982,13 +1060,54 @@ section { padding: 60px 0; }
   justify-content: center;
   font-family: 'Cinzel', var(--font-en);
   font-size: 16px;
-  border-radius: 0;
   font-weight: 700;
-  letter-spacing: 0;
 }
-.qa-list dt span { background: var(--color-1st); color: var(--color-white); }
-.qa-list dd { color: var(--color-ccc); }
-.qa-list dd span { background: transparent; color: var(--color-1st-lt); border: 1px solid var(--color-1st); }
+.qa-item .qa-q { background: var(--color-1st); color: var(--color-white); }
+.qa-item .qa-a { background: transparent; color: var(--color-1st-lt); border: 1px solid var(--color-1st); }
+/* 開閉トグル（+/− アイコン） */
+.qa-item .qa-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  pointer-events: none;
+}
+.qa-item .qa-toggle::before,
+.qa-item .qa-toggle::after {
+  content: "";
+  position: absolute;
+  background: var(--color-1st-lt);
+  transition: transform .3s ease, opacity .3s ease;
+}
+.qa-item .qa-toggle::before {
+  left: 0; top: 7px;
+  width: 16px; height: 2px;
+}
+.qa-item .qa-toggle::after {
+  left: 7px; top: 0;
+  width: 2px; height: 16px;
+}
+.qa-item[open] .qa-toggle::after { transform: rotate(90deg); opacity: 0; }
+
+/* アコーディオン本体 */
+.qa-item .qa-body {
+  position: relative;
+  padding: 18px 20px 22px 64px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-ccc);
+}
+.qa-item .qa-body p { margin: 0; }
+.qa-item .qa-body .qa-a { top: 18px; }
+/* details開閉アニメ */
+@keyframes qaSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.qa-item[open] .qa-body { animation: qaSlideDown .35s ease-out; }
 
 /* ===== LINE CTA ===== */
 .line-cta {
@@ -1142,16 +1261,19 @@ section { padding: 60px 0; }
 /* ===== 固定LINEボタン ===== */
 .float-line {
   position: fixed;
-  right: 12px;
-  bottom: 12px;
+  right: 14px;
+  bottom: 14px;
   z-index: 90;
   background: var(--color-line);
   color: var(--color-white);
-  padding: 14px 20px;
-  border-radius: 50px;
+  padding: 16px 28px;
+  min-width: 168px;
+  border-radius: 12px;
+  text-align: center;
   font-weight: 900;
-  font-size: 13px;
-  box-shadow: 0 4px 14px rgba(6,199,85,0.5), 0 0 0 3px rgba(255,255,255,0.1);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 6px 18px rgba(6,199,85,0.55), 0 0 0 1px rgba(255,255,255,0.08);
   animation: floatPulse 2.4s ease-in-out infinite;
   overflow: hidden;
 }
@@ -1165,8 +1287,8 @@ section { padding: 60px 0; }
   animation: ctaShine 3s ease-in-out infinite;
 }
 @keyframes floatPulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(6,199,85,0.5), 0 0 0 3px rgba(255,255,255,0.1); }
-  50%      { transform: scale(1.07); box-shadow: 0 6px 22px rgba(6,199,85,0.75), 0 0 0 6px rgba(6,199,85,0.15); }
+  0%, 100% { transform: scale(1); box-shadow: 0 6px 18px rgba(6,199,85,0.55), 0 0 0 1px rgba(255,255,255,0.08); }
+  50%      { transform: scale(1.04); box-shadow: 0 10px 26px rgba(6,199,85,0.78), 0 0 0 2px rgba(6,199,85,0.18); }
 }
 .float-line:hover {
   transform: translateY(4px) scale(0.96);
@@ -1239,6 +1361,183 @@ section { padding: 60px 0; }
    ============================================ */
 @media (max-width: 767px) {
   .hero-bg-blur {
-    background-image: url('land_cruiser_mobile_hero_v8.png');
+    background-image: url('land_cruiser_mobile_hero.png');
   }
+  /* 上から黒→透明のグラデーションオーバーレイ（テキスト可読性確保） */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 32%;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.6) 45%,
+      rgba(0,0,0,0.25) 80%,
+      rgba(0,0,0,0) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* モデル一覧カードのテキストはみ出し対策 */
+  .model-list a {
+    padding: 18px 8px;
+  }
+  .model-list a span {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .model-list a small {
+    font-size: 10px;
+    line-height: 1.4;
+    display: block;
+    word-break: keep-all;
+  }
+
+  /* 価格表をカード型に変換（横スクロール解消） */
+  .price-table {
+    overflow-x: visible;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  .price-table table,
+  .price-table thead,
+  .price-table tbody,
+  .price-table tr,
+  .price-table th,
+  .price-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: none;
+    padding: 0;
+  }
+  .price-table thead { display: none; }
+  .price-table tr {
+    background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-gray) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 2px solid var(--color-1st);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+  .price-table tbody tr:nth-child(even) { background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-gray) 100%); }
+  .price-table td {
+    position: relative;
+    padding: 8px 0 8px 88px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .price-table td:last-child { border-bottom: none; }
+  .price-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 80px;
+    font-family: 'Cinzel', var(--font-en);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-1st-lt);
+    font-weight: 700;
+  }
+  .price-table tbody td:last-child {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+  /* モバイルのヒーロー：画像と同じ縦横比、横幅100% */
+  .hero {
+    aspect-ratio: 864 / 1184;
+    min-height: 0;
+    width: 100%;
+  }
+  .hero-bg-blur {
+    background-size: 100% auto;
+    background-position: center top;
+  }
+  /* ヒーロー内のテキスト：ヘッダー直下に中央揃え、画面内に確実に収める
+     「業界最高水準・他店圧倒査定」フォントサイズ2行分（約2.4em ≒ 32px）上にずらす */
+  .hero-text-wrap {
+    top: -32px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    padding: 14px 5% 0;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 4;
+  }
+  .hero-text-wrap .hb-en,
+  .hero-text-wrap .hb-jp,
+  .hero-text-wrap .hb-tag { text-align: center; }
+  /* 1行のため画面幅に収まるサイズに微調整 */
+  .hb-en {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(8px, 2.2vw, 13px);
+    letter-spacing: 0.22em;
+  }
+  .hb-en::after { margin-left: auto; margin-right: auto; }
+  .hb-jp {
+    font-size: clamp(15px, 5vw, 26px);
+    letter-spacing: 0.02em;
+  }
+  .hb-tag {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(10px, 2.8vw, 13px);
+  }
+
+  /* ヒーロー内のコピー領域とCTAは非表示（外に出す） */
+  .hero-content    { display: none; }
+  .hero-cta-wrap   { display: none; }
+
+  /* ヒーロー直下のコピー＆CTAコンテナ */
+  .hero-after-mobile {
+    display: block;
+    background: var(--color-bg);
+    padding: 28px 5% 18px;
+  }
+  .hero-after-copy {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .hero-after-copy .hero-catch {
+    font-size: clamp(15px, 4.4vw, 20px);
+    color: var(--color-2nd);
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    text-shadow: none;
+    white-space: nowrap;
+  }
+  .hero-after-copy .hero-catch::before {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-after-copy .hero-desc {
+    font-size: 12px;
+    color: var(--color-ccc);
+    text-shadow: none;
+    line-height: 1.8;
+  }
+  .hero-cta-mobile {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  .hero-cta-mobile .hero-cta {
+    padding: 10px 24px;
+    gap: 2px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 360px;
+  }
+  .hero-cta-mobile .hero-cta .cta-label { font-size: 11px; }
+  .hero-cta-mobile .hero-cta .cta-main  { font-size: 17px; }
 }
