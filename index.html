@@ -117,21 +117,13 @@
       <strong>弊社なら安心してお売りできます！</strong>
     </h2>
     <!-- YouTube 動画（スクロール自動再生） -->
-    <div class="trust-video-wrap reveal">
-      <iframe
-        id="trustYoutube"
-        src="https://www.youtube.com/embed/KOXWdMO0F18?enablejsapi=1&autoplay=0&mute=1&loop=1&playlist=KOXWdMO0F18&rel=0"
-        title="ランクル300専門高価買取JP 紹介動画"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy"
-      ></iframe>
+    <div class="trust-video-wrap">
+      <div id="trustYoutube"></div>
     </div>
-    <!-- 信頼情報 -->
-    <div class="trust-info reveal">
+    <!-- 信頼情報：PC=横並び、モバイル=縦積み -->
+    <div class="trust-info">
       <div class="trust-img-wrap">
-        <img src="スクリーンショット 2026-05-10 20.58.11.png" alt="帝国データバンク評点61点" class="trust-img">
+        <img src="trust_badge.webp" alt="帝国データバンク評点61点" class="trust-img" loading="lazy" width="788" height="786">
       </div>
       <div class="trust-text">
         <p>昨今車買取りでの未入金トラブルが多いです！安心して下さい！ランクル300専門高価買取JPの運営会社は国内最大スーパーカーショップ『カーショップグローリー』を運営する株式会社ライジングサンです。お陰様で財務状況も問題なく帝国データバンクさんの評点は上場企業なみの<strong>61点</strong>を頂いております。</p>
@@ -418,35 +410,60 @@
     io.observe(el);
   });
 
-  // YouTube スクロール自動再生
-  let ytPlayer;
-  function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('trustYoutube', {
-      events: {
-        onReady: function(e) {
-          e.target.mute();
-        }
-      }
-    });
-  }
-  const ytTag = document.createElement('script');
-  ytTag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(ytTag);
+  // YouTube IFrame API スクロール自動再生
+  var ytPlayer = null;
+  var ytReady = false;
 
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (ytPlayer && ytPlayer.playVideo) {
-          ytPlayer.playVideo();
-        }
-      } else {
-        if (ytPlayer && ytPlayer.pauseVideo) {
-          ytPlayer.pauseVideo();
+  // グローバルコールバック（YouTube APIから呼ばれる）
+  window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player('trustYoutube', {
+      videoId: 'KOXWdMO0F18',
+      playerVars: {
+        autoplay: 0,
+        mute: 1,
+        loop: 1,
+        playlist: 'KOXWdMO0F18',
+        rel: 0,
+        playsinline: 1,
+        modestbranding: 1
+      },
+      events: {
+        onReady: function() {
+          ytReady = true;
+          // すでにビューポート内なら再生開始
+          var wrap = document.querySelector('.trust-video-wrap');
+          if (wrap) {
+            var rect = wrap.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              ytPlayer.playVideo();
+            }
+          }
         }
       }
     });
-  }, { threshold: 0.4 });
-  const videoWrap = document.querySelector('.trust-video-wrap');
+  };
+
+  // YouTube IFrame API 読み込み
+  (function() {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(tag, firstScript);
+  })();
+
+  // スクロール監視で自動再生／停止
+  var videoObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!ytPlayer || !ytReady) return;
+      if (entry.isIntersecting) {
+        ytPlayer.playVideo();
+      } else {
+        ytPlayer.pauseVideo();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  var videoWrap = document.querySelector('.trust-video-wrap');
   if (videoWrap) videoObserver.observe(videoWrap);
 </script>
 </body>
