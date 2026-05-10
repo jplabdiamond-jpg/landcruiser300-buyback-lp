@@ -1361,7 +1361,7 @@ section { padding: 60px 0; }
    ============================================ */
 @media (max-width: 767px) {
   .hero-bg-blur {
-    background-image: url('land_cruiser_mobile_hero.png');
+    background-image: url('land_cruiser_mobile_hero_v2.png');
   }
   /* 上から黒→透明のグラデーションオーバーレイ（テキスト可読性確保） */
   .hero::before {
@@ -1450,7 +1450,7 @@ section { padding: 60px 0; }
   }
   /* モバイルのヒーロー：画像と同じ縦横比、横幅100% */
   .hero {
-    aspect-ratio: 864 / 1536;
+    aspect-ratio: 941 / 1672;
     min-height: 0;
     width: 100%;
   }
