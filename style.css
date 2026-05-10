@@ -1059,6 +1059,7 @@ section { padding: 60px 0; }
 /* ===== Q&A (アコーディオン) ===== */
 .qa { background: var(--color-gray); }
 .qa-list { display: grid; gap: 14px; }
+.qa-list dd { color: #f4b8c0; }
 .qa-item {
   background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-gray) 100%);
   border-radius: 2px;
