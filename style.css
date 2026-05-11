@@ -1259,6 +1259,100 @@ section { padding: 60px 0; }
 .lc-tel small { font-size: 11px; color: var(--color-1st-lt); letter-spacing: 0.18em; }
 .lc-tel strong { font-size: 22px; font-family: 'Cinzel', var(--font-en); letter-spacing: 0.08em; color: var(--color-white); font-weight: 500; }
 
+/* ===== 査定申込フォーム ===== */
+.inquiry-form-wrap {
+  margin-top: 48px;
+  background: var(--color-gray);
+  border: 1px solid rgba(200,16,46,0.3);
+  border-radius: 4px;
+  padding: 32px 28px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.inquiry-form-title {
+  font-size: clamp(16px, 4vw, 22px);
+  font-weight: 800;
+  color: var(--color-white);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+.inquiry-form-desc {
+  font-size: 13px;
+  color: var(--color-mute);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.inquiry-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.inquiry-form label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.04em;
+}
+.req {
+  display: inline-block;
+  background: var(--color-1st);
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  width: 100%;
+  background: var(--color-bg);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  color: var(--color-text);
+  font-size: 14px;
+  padding: 10px 12px;
+  font-family: var(--font-jp);
+  transition: border-color .2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  border-color: var(--color-1st-lt);
+}
+.inquiry-form textarea { resize: vertical; min-height: 100px; }
+.form-status {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  min-height: 22px;
+  margin-bottom: 12px;
+}
+.form-submit {
+  display: block;
+  width: 100%;
+  background: var(--color-1st);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .25s, transform .2s;
+  font-family: var(--font-jp);
+}
+.form-submit:hover { background: var(--color-1st-dk); transform: translateY(-1px); }
+.form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
 /* ===== Company ===== */
 .company { background: var(--color-bg); }
 .company-table {
@@ -1399,7 +1493,7 @@ section { padding: 60px 0; }
    ============================================ */
 @media (max-width: 767px) {
   .hero-bg-blur {
-    background-image: url('land_cruiser_mobile_hero_v2.png');
+    background-image: url('land_cruiser_white_text.png');
   }
   /* 上から黒→透明のグラデーションオーバーレイ（テキスト可読性確保） */
   .hero::before {

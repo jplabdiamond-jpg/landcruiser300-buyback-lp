@@ -83,7 +83,7 @@
   <div class="container">
     <h2 class="section-title">
       <span class="st-en">STRONG BUYING</span>
-      <strong>ランクル300の限定車・GR SPORT・希少グレードは</strong>
+      <strong>ランクル300の外装色黒・ディーゼル車輌(外装色問わず)は</strong>
       <span class="st-em">特に買取強化中!!</span>
     </h2>
     <p class="lead">弊社はランドクルーザー300専門店として、最大限の評価査定で納得価格の買取をさせていただきます。これまでの実績から幅広いネットワークを活用し、カーオークションの流通マージンを抑え直接海外に販売又は国内ユーザー様に直接販売する事でお客様に有利な買取価格のご提供が可能です。<br>他社の買取価格にご不満の方は、ぜひ当社にご相談ください。</p>
@@ -103,8 +103,6 @@
       <li><a href="#price"><span>VX</span></a></li>
       <li><a href="#price"><span>AX</span></a></li>
       <li><a href="#price"><span>GX</span></a></li>
-      <li><a href="#price"><span>ディーゼル</span></a></li>
-      <li><a href="#price"><span>ガソリン</span></a></li>
     </ul>
   </div>
 </section>
@@ -116,10 +114,6 @@
       <span class="st-en">TRUST</span>
       <strong>弊社なら安心してお売りできます！</strong>
     </h2>
-    <!-- YouTube 動画（スクロール自動再生） -->
-    <div class="trust-video-wrap">
-      <div id="trustYoutube"></div>
-    </div>
     <!-- 信頼情報：PC=横並び、モバイル=縦積み -->
     <div class="trust-info">
       <div class="trust-img-wrap">
@@ -245,7 +239,7 @@
       <li>
         <span class="fno">STEP 05</span>
         <h3>即日お振込み・お車のお引き取り</h3>
-        <p>最短即日でお振込み完了。お車は無料で引き取りに伺います。</p>
+        <p>最短振込みでお振込み完了。お車は無料で引き取りに伺います。</p>
       </li>
     </ol>
   </div>
@@ -321,7 +315,7 @@
     <p class="lc-en">CONTACT</p>
     <h2 class="lc-catch">他店との差額に驚いてください。<br>まずはLINEで見積もり相談を。</h2>
     <p class="lc-desc">車検証の写真とお車の写真を送るだけ。<br>30秒で査定依頼が完了します。<br>もちろん査定後のキャンセルも無料です。</p>
-    <a href="https://line.me/R/ti/p/@carshop-glory" class="line-btn" target="_blank" rel="noopener">
+    <a href="https://line.me/R/ti/p/@083vtrdk" class="line-btn" target="_blank" rel="noopener">
       <span class="lb-icon" aria-hidden="true">LINE</span>
       <span class="lb-text">
         <span>友だち追加して</span>
@@ -335,6 +329,70 @@
         <strong>0586-47-655</strong>
         <small>受付 10:00-18:00 / 火曜定休</small>
       </a>
+    </div>
+
+    <!-- 査定申込フォーム -->
+    <div class="inquiry-form-wrap">
+      <h3 class="inquiry-form-title">査定申込フォーム</h3>
+      <p class="inquiry-form-desc">下記フォームにご入力いただき送信してください。担当者よりご連絡いたします。</p>
+      <form id="inquiryForm" class="inquiry-form" novalidate>
+        <div class="form-row">
+          <label for="f-name">お名前 <span class="req">必須</span></label>
+          <input type="text" id="f-name" name="name" placeholder="例：山田 太郎" required>
+        </div>
+        <div class="form-row">
+          <label for="f-kana">フリガナ <span class="req">必須</span></label>
+          <input type="text" id="f-kana" name="kana" placeholder="例：ヤマダ タロウ" required>
+        </div>
+        <div class="form-row">
+          <label for="f-tel">電話番号 <span class="req">必須</span></label>
+          <input type="tel" id="f-tel" name="tel" placeholder="例：090-1234-5678" required>
+        </div>
+        <div class="form-row">
+          <label for="f-email">メールアドレス <span class="req">必須</span></label>
+          <input type="email" id="f-email" name="email" placeholder="例：example@gmail.com" required>
+        </div>
+        <div class="form-row">
+          <label for="f-grade">グレード <span class="req">必須</span></label>
+          <select id="f-grade" name="grade" required>
+            <option value="">選択してください</option>
+            <option>GR SPORT</option>
+            <option>ZX</option>
+            <option>VX</option>
+            <option>AX</option>
+            <option>GX</option>
+            <option>ディーゼル（グレード問わず）</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-year">年式</label>
+          <input type="text" id="f-year" name="year" placeholder="例：2023年式">
+        </div>
+        <div class="form-row">
+          <label for="f-mileage">走行距離</label>
+          <input type="text" id="f-mileage" name="mileage" placeholder="例：15,000km">
+        </div>
+        <div class="form-row">
+          <label for="f-color">外装色</label>
+          <input type="text" id="f-color" name="color" placeholder="例：ブラック">
+        </div>
+        <div class="form-row">
+          <label for="f-repair">修復歴</label>
+          <select id="f-repair" name="repair">
+            <option value="">選択してください</option>
+            <option>なし</option>
+            <option>あり</option>
+            <option>不明</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-message">その他ご要望・ご質問</label>
+          <textarea id="f-message" name="message" rows="4" placeholder="ご自由にお書きください"></textarea>
+        </div>
+        <div id="form-status" class="form-status"></div>
+        <button type="submit" class="form-submit">査定を申し込む</button>
+      </form>
     </div>
   </div>
 </section>
@@ -356,6 +414,7 @@
       <tr><th>定休日</th><td>毎週火曜日</td></tr>
       <tr><th>事業内容</th><td>輸入車・スーパーカー・ランクル300の販売 / 高価買取 / 委託販売 / 自社認証整備工場</td></tr>
       <tr><th>公式サイト</th><td><a href="https://carshop-glory.jp/" target="_blank" rel="noopener">https://carshop-glory.jp/</a></td></tr>
+      <tr><th>メール</th><td><a href="mailto:carshopglory.yasuda@gmail.com">carshopglory.yasuda@gmail.com</a></td></tr>
     </table>
   </div>
 </section>
@@ -410,61 +469,45 @@
     io.observe(el);
   });
 
-  // YouTube IFrame API スクロール自動再生
-  var ytPlayer = null;
-  var ytReady = false;
-
-  // グローバルコールバック（YouTube APIから呼ばれる）
-  window.onYouTubeIframeAPIReady = function() {
-    ytPlayer = new YT.Player('trustYoutube', {
-      videoId: 'KOXWdMO0F18',
-      playerVars: {
-        autoplay: 0,
-        mute: 1,
-        loop: 1,
-        playlist: 'KOXWdMO0F18',
-        rel: 0,
-        playsinline: 1,
-        modestbranding: 1
-      },
-      events: {
-        onReady: function() {
-          ytReady = true;
-          // すでにビューポート内なら再生開始
-          var wrap = document.querySelector('.trust-video-wrap');
-          if (wrap) {
-            var rect = wrap.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-              ytPlayer.playVideo();
-            }
-          }
+  // 査定申込フォーム送信（Formspree）
+  var form = document.getElementById('inquiryForm');
+  var status = document.getElementById('form-status');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      var btn = form.querySelector('.form-submit');
+      btn.disabled = true;
+      btn.textContent = '送信中…';
+      status.textContent = '';
+      var data = new FormData(form);
+      var body = {};
+      data.forEach(function(v, k) { body[k] = v; });
+      // FormspreeへPOST（carshopglory.yasuda@gmail.com 宛）
+      try {
+        var res = await fetch('https://formspree.io/f/xldnjgwl', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (res.ok) {
+          status.textContent = '✅ 送信が完了しました。担当者よりご連絡いたします。';
+          status.style.color = '#4ade80';
+          form.reset();
+        } else {
+          throw new Error();
         }
+      } catch(err) {
+        status.textContent = '❌ 送信に失敗しました。お電話またはLINEでご連絡ください。';
+        status.style.color = '#f87171';
       }
+      btn.disabled = false;
+      btn.textContent = '査定を申し込む';
     });
-  };
-
-  // YouTube IFrame API 読み込み
-  (function() {
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    var firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(tag, firstScript);
-  })();
-
-  // スクロール監視で自動再生／停止
-  var videoObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!ytPlayer || !ytReady) return;
-      if (entry.isIntersecting) {
-        ytPlayer.playVideo();
-      } else {
-        ytPlayer.pauseVideo();
-      }
-    });
-  }, { threshold: 0.3 });
-
-  var videoWrap = document.querySelector('.trust-video-wrap');
-  if (videoWrap) videoObserver.observe(videoWrap);
+  }
 </script>
 </body>
 </html>
