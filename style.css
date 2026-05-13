@@ -179,7 +179,7 @@ ul, ol { list-style: none; }
 .hero-bg-blur {
   position: absolute;
   inset: 0;
-  background-image: url('land_cruiser_recreated.png');
+  background-image: url('land_cruiser_landscape_white_text.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1353,6 +1353,61 @@ section { padding: 60px 0; }
 .form-submit:hover { background: var(--color-1st-dk); transform: translateY(-1px); }
 .form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
+/* フォーム追加要素 */
+.form-section-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-1st-lt);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 3px solid var(--color-1st);
+  padding-left: 10px;
+  margin-bottom: 16px;
+}
+.form-row--2col {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-row--2col > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-check-group,
+.form-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 4px;
+}
+.form-check,
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.form-check input[type="checkbox"],
+.form-radio input[type="radio"] {
+  width: auto;
+  accent-color: var(--color-1st);
+  cursor: pointer;
+}
+.form-input-unit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-input-unit input { flex: 1; }
+.unit {
+  font-size: 13px;
+  color: var(--color-mute);
+  white-space: nowrap;
+}
+
 /* ===== Company ===== */
 .company { background: var(--color-bg); }
 .company-table {
@@ -1508,6 +1563,10 @@ section { padding: 60px 0; }
       rgba(0,0,0,0) 100%);
     z-index: 2;
     pointer-events: none;
+  }
+
+  .form-row--2col {
+    grid-template-columns: 1fr !important;
   }
 
   /* モデル一覧カードのテキストはみ出し対策 */

@@ -29,7 +29,7 @@
         </a>
       </li>
       <li>
-        <a href="#line-cta" class="hcta-line">
+        <a href="https://line.me/R/ti/p/@083vtrdk" class="hcta-line" target="_blank" rel="noopener">
           <span class="hcta-label">LINEでカンタン</span>
           <span class="hcta-num">見積もり相談</span>
         </a>
@@ -238,7 +238,7 @@
       </li>
       <li>
         <span class="fno">STEP 05</span>
-        <h3>即日お振込み・お車のお引き取り</h3>
+        <h3>最短お振込み・お車のお引き取り</h3>
         <p>最短振込みでお振込み完了。お車は無料で引き取りに伺います。</p>
       </li>
     </ol>
@@ -333,65 +333,209 @@
 
     <!-- 査定申込フォーム -->
     <div class="inquiry-form-wrap">
-      <h3 class="inquiry-form-title">査定申込フォーム</h3>
+      <h3 class="inquiry-form-title">無料査定フォーム</h3>
       <p class="inquiry-form-desc">下記フォームにご入力いただき送信してください。担当者よりご連絡いたします。</p>
       <form id="inquiryForm" class="inquiry-form" novalidate>
+
+        <!-- お車情報 -->
+        <p class="form-section-label">お車の情報</p>
+
+        <div class="form-row">
+          <label for="f-model">車種 <span class="req">必須</span></label>
+          <select id="f-model" name="model" required>
+            <option value="">選択してください</option>
+            <option>ランドクルーザー300</option>
+            <option>ランドクルーザープラド</option>
+            <option>ランドクルーザー250</option>
+            <option>レクサスLX</option>
+            <option>その他</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-grade">グレード</label>
+          <input type="text" id="f-grade" name="grade" placeholder="例：GR SPORT / ZX / VX">
+        </div>
+
+        <div class="form-row form-row--checkbox">
+          <label>装備（該当するものにチェック）</label>
+          <div class="form-check-group">
+            <label class="form-check"><input type="checkbox" name="equipment[]" value="カーナビ">カーナビ</label>
+            <label class="form-check"><input type="checkbox" name="equipment[]" value="サンルーフ">サンルーフ</label>
+            <label class="form-check"><input type="checkbox" name="equipment[]" value="リアエンターテイメント">リアエンターテイメント</label>
+            <label class="form-check"><input type="checkbox" name="equipment[]" value="クールボックス">クールボックス</label>
+            <label class="form-check"><input type="checkbox" name="equipment[]" value="なし">なし</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-equipment-other">その他装備</label>
+          <input type="text" id="f-equipment-other" name="equipment_other" placeholder="例：サイドステップ、アーマー等">
+        </div>
+
+        <div class="form-row form-row--2col">
+          <div>
+            <label for="f-year">年式 <span class="req">必須</span></label>
+            <select id="f-year" name="year" required>
+              <option value="">年</option>
+              <option>2026年式（令和8年）</option>
+              <option>2025年式（令和7年後期）</option>
+              <option>2025年式（令和7年）</option>
+              <option>2024年式（令和6年）</option>
+              <option>2023年式（令和5年）</option>
+              <option>2022年式（令和4年）</option>
+              <option>2021年式（令和3年）</option>
+              <option>2020年式（令和2年）</option>
+              <option>2019年式（令和元年）</option>
+              <option>2018年式（平成30年）</option>
+              <option>2017年式（平成29年）</option>
+              <option>2016年式（平成28年）</option>
+              <option>2015年式（平成27年）</option>
+              <option>2014年式（平成26年）</option>
+              <option>2013年式（平成25年）</option>
+              <option>2012年式（平成24年）</option>
+              <option>2011年式（平成23年）</option>
+              <option>2010年式（平成22年）</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-month">月</label>
+            <select id="f-month" name="month">
+              <option value="">月</option>
+              <option>1月</option><option>2月</option><option>3月</option>
+              <option>4月</option><option>5月</option><option>6月</option>
+              <option>7月</option><option>8月</option><option>9月</option>
+              <option>10月</option><option>11月</option><option>12月</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-mileage-select">走行距離 <span class="req">必須</span></label>
+          <select id="f-mileage-select" name="mileage_range" required>
+            <option value="">選択してください</option>
+            <option>0～1,000km</option>
+            <option>1,001～5,000km</option>
+            <option>5,001〜10,000km</option>
+            <option>10,001〜15,000km</option>
+            <option>15,001〜20,000km</option>
+            <option>20,001〜25,000km</option>
+            <option>25,001〜30,000km</option>
+            <option>30,001〜40,000km</option>
+            <option>40,001〜50,000km</option>
+            <option>50,001〜60,000km</option>
+            <option>60,001〜80,000km</option>
+            <option>80,001〜100,000km</option>
+            <option>100,001km〜</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-mileage-exact">現在の走行距離（正確にわかる場合）</label>
+          <div class="form-input-unit">
+            <input type="text" id="f-mileage-exact" name="mileage_exact" placeholder="例：15000">
+            <span class="unit">km</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-color">車体カラー</label>
+          <input type="text" id="f-color" name="color" placeholder="例：ブラック">
+        </div>
+
+        <div class="form-row">
+          <label for="f-other-estimate">他社での査定額</label>
+          <input type="text" id="f-other-estimate" name="other_estimate" placeholder="例：700万円">
+        </div>
+
+        <div class="form-row">
+          <label for="f-hope-price">希望金額</label>
+          <input type="text" id="f-hope-price" name="hope_price" placeholder="例：750万円">
+        </div>
+
+        <div class="form-row">
+          <label for="f-purchase-condition">購入時の状態</label>
+          <select id="f-purchase-condition" name="purchase_condition">
+            <option value="">選択してください</option>
+            <option>新車</option>
+            <option>中古車</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-repair">板金・塗装や修復歴</label>
+          <select id="f-repair" name="repair">
+            <option value="">選択してください</option>
+            <option>ある</option>
+            <option>ない</option>
+            <option>わからない</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-damage-detail">ダメージ詳細</label>
+          <textarea id="f-damage-detail" name="damage_detail" rows="3" placeholder="ダメージがある場合は詳細をご記入ください"></textarea>
+        </div>
+
+        <div class="form-row form-row--radio">
+          <label>車両の喫煙状態 <span class="req">必須</span></label>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="smoking" value="喫煙車" required>喫煙車</label>
+            <label class="form-radio"><input type="radio" name="smoking" value="禁煙車">禁煙車</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-sell-timing">売却予定時期 <span class="req">必須</span></label>
+          <select id="f-sell-timing" name="sell_timing" required>
+            <option value="">選択してください</option>
+            <option>金額が合えばすぐ</option>
+            <option>1週間以内</option>
+            <option>2週間以内</option>
+            <option>1ヶ月以内</option>
+            <option>1ヶ月～</option>
+            <option>未定</option>
+          </select>
+        </div>
+
+        <!-- お客様情報 -->
+        <p class="form-section-label" style="margin-top:2rem;">お客様の情報</p>
+
         <div class="form-row">
           <label for="f-name">お名前 <span class="req">必須</span></label>
           <input type="text" id="f-name" name="name" placeholder="例：山田 太郎" required>
         </div>
+
         <div class="form-row">
-          <label for="f-kana">フリガナ <span class="req">必須</span></label>
-          <input type="text" id="f-kana" name="kana" placeholder="例：ヤマダ タロウ" required>
+          <label for="f-kana">フリガナ</label>
+          <input type="text" id="f-kana" name="kana" placeholder="例：ヤマダ タロウ">
         </div>
+
         <div class="form-row">
           <label for="f-tel">電話番号 <span class="req">必須</span></label>
           <input type="tel" id="f-tel" name="tel" placeholder="例：090-1234-5678" required>
         </div>
+
         <div class="form-row">
           <label for="f-email">メールアドレス <span class="req">必須</span></label>
           <input type="email" id="f-email" name="email" placeholder="例：example@gmail.com" required>
         </div>
-        <div class="form-row">
-          <label for="f-grade">グレード <span class="req">必須</span></label>
-          <select id="f-grade" name="grade" required>
-            <option value="">選択してください</option>
-            <option>GR SPORT</option>
-            <option>ZX</option>
-            <option>VX</option>
-            <option>AX</option>
-            <option>GX</option>
-            <option>ディーゼル（グレード問わず）</option>
-            <option>その他</option>
-          </select>
+
+        <div class="form-row form-row--radio">
+          <label>ご希望の連絡方法 <span class="req">必須</span></label>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="contact_method" value="メール" required>メール</label>
+            <label class="form-radio"><input type="radio" name="contact_method" value="電話も可能">電話も可能</label>
+          </div>
         </div>
+
         <div class="form-row">
-          <label for="f-year">年式</label>
-          <input type="text" id="f-year" name="year" placeholder="例：2023年式">
-        </div>
-        <div class="form-row">
-          <label for="f-mileage">走行距離</label>
-          <input type="text" id="f-mileage" name="mileage" placeholder="例：15,000km">
-        </div>
-        <div class="form-row">
-          <label for="f-color">外装色</label>
-          <input type="text" id="f-color" name="color" placeholder="例：ブラック">
-        </div>
-        <div class="form-row">
-          <label for="f-repair">修復歴</label>
-          <select id="f-repair" name="repair">
-            <option value="">選択してください</option>
-            <option>なし</option>
-            <option>あり</option>
-            <option>不明</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="f-message">その他ご要望・ご質問</label>
+          <label for="f-message">備考・その他ご要望</label>
           <textarea id="f-message" name="message" rows="4" placeholder="ご自由にお書きください"></textarea>
         </div>
+
         <div id="form-status" class="form-status"></div>
-        <button type="submit" class="form-submit">査定を申し込む</button>
+        <button type="submit" class="form-submit">無料査定を申し込む</button>
       </form>
     </div>
   </div>
@@ -424,7 +568,7 @@
 </footer>
 
 <!-- 固定LINEボタン -->
-<a href="#line-cta" class="float-line" aria-label="LINEで見積もり相談">
+<a href="https://line.me/R/ti/p/@083vtrdk" class="float-line" aria-label="LINEで見積もり相談" target="_blank" rel="noopener">
   <span>LINE見積もり</span>
 </a>
 
