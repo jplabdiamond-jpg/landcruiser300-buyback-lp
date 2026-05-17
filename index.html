@@ -637,9 +637,9 @@
           body[k] = v;
         }
       });
-      // FormspreeへPOST（carshopglory.yasuda@gmail.com 宛）
+      // PHP送信スクリプトへPOST（carshopglory.yasuda@gmail.com 宛）
       try {
-        var res = await fetch('https://formspree.io/f/xldnjgwl', {
+        var res = await fetch('./send.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(body)
