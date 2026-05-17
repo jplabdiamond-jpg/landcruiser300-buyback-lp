@@ -629,7 +629,14 @@
       status.textContent = '';
       var data = new FormData(form);
       var body = {};
-      data.forEach(function(v, k) { body[k] = v; });
+      data.forEach(function(v, k) {
+        if (k in body) {
+          if (!Array.isArray(body[k])) body[k] = [body[k]];
+          body[k].push(v);
+        } else {
+          body[k] = v;
+        }
+      });
       // FormspreeへPOST（carshopglory.yasuda@gmail.com 宛）
       try {
         var res = await fetch('https://formspree.io/f/xldnjgwl', {
@@ -649,7 +656,7 @@
         status.style.color = '#f87171';
       }
       btn.disabled = false;
-      btn.textContent = '査定を申し込む';
+      btn.textContent = '無料査定を申し込む';
     });
   }
 </script>

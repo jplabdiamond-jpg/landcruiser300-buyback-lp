@@ -1308,7 +1308,7 @@ section { padding: 60px 0; }
   vertical-align: middle;
   font-weight: 700;
 }
-.inquiry-form input,
+.inquiry-form input:not([type="checkbox"]):not([type="radio"]),
 .inquiry-form select,
 .inquiry-form textarea {
   width: 100%;
@@ -1323,7 +1323,7 @@ section { padding: 60px 0; }
   outline: none;
   -webkit-appearance: none;
 }
-.inquiry-form input:focus,
+.inquiry-form input:not([type="checkbox"]):not([type="radio"]):focus,
 .inquiry-form select:focus,
 .inquiry-form textarea:focus {
   border-color: var(--color-1st-lt);
