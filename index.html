@@ -23,9 +23,9 @@
     </h1>
     <ul class="header-cta">
       <li>
-        <a href="tel:0586-47-655" class="hcta-tel">
+        <a href="tel:0586-47-6055" class="hcta-tel">
           <span class="hcta-label">買取専門ダイヤル</span>
-          <span class="hcta-num">0586-47-655</span>
+          <span class="hcta-num">0586-47-6055</span>
         </a>
       </li>
       <li>
@@ -122,6 +122,17 @@
       <div class="trust-text">
         <p>昨今車買取りでの未入金トラブルが多いです！安心して下さい！ランクル300専門高価買取JPの運営会社は国内最大スーパーカーショップ『カーショップグローリー』を運営する株式会社ライジングサンです。お陰様で財務状況も問題なく帝国データバンクさんの評点は上場企業なみの<strong>61点</strong>を頂いております。</p>
       </div>
+    </div>
+    <div class="cta-video-wrap">
+      <iframe
+        class="cta-video"
+        src="https://www.youtube.com/embed/uTLRsRbg6FQ?autoplay=1&mute=1&loop=1&playlist=uTLRsRbg6FQ&controls=0&playsinline=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3"
+        title="ランクル300 査定動画"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </div>
     <div class="cta-row">
       <a href="#line-cta" class="cta-btn">▶ あなたのランクル300を今すぐ査定する</a>
@@ -324,15 +335,15 @@
     </a>
     <p class="lc-note">ラインから車両データ頂ければ、来店無しでスピード査定！</p>
     <div class="lc-sub">
-      <a href="tel:0586-47-655" class="lc-tel">
+      <a href="tel:0586-47-6055" class="lc-tel">
         <small>お電話でもどうぞ</small>
-        <strong>0586-47-655</strong>
+        <strong>0586-47-6055</strong>
         <small>受付 10:00-18:00 / 火曜定休</small>
       </a>
     </div>
 
     <!-- 査定申込フォーム -->
-    <div class="inquiry-form-wrap">
+    <div class="inquiry-form-wrap" id="assessment-form">
       <h3 class="inquiry-form-title">無料査定フォーム</h3>
       <p class="inquiry-form-desc">下記フォームにご入力いただき送信してください。担当者よりご連絡いたします。</p>
       <form id="inquiryForm" class="inquiry-form" novalidate>
@@ -340,19 +351,7 @@
         <!-- お車情報 -->
         <p class="form-section-label">お車の情報</p>
 
-        <div class="form-row">
-          <label for="f-model">車種 <span class="req">必須</span></label>
-          <select id="f-model" name="model" required>
-            <option value="">選択してください</option>
-            <option>ランドクルーザー300</option>
-            <option>ランドクルーザープラド</option>
-            <option>ランドクルーザー250</option>
-            <option>レクサスLX</option>
-            <option>その他</option>
-          </select>
-        </div>
-
-        <div class="form-row">
+<div class="form-row">
           <label for="f-grade">グレード</label>
           <input type="text" id="f-grade" name="grade" placeholder="例：GR SPORT / ZX / VX">
         </div>
@@ -567,10 +566,21 @@
   <p>&copy; 2026 ランクル300専門高価買取JP / カーショップグローリー（株式会社ライジングサン）</p>
 </footer>
 
-<!-- 固定LINEボタン -->
-<a href="https://line.me/R/ti/p/@083vtrdk" class="float-line" aria-label="LINEで見積もり相談" target="_blank" rel="noopener">
-  <span>LINE見積もり</span>
-</a>
+<!-- 固定フッターCTAバー（モバイル用） -->
+<div class="fixed-cta-bar" role="navigation" aria-label="お問い合わせ">
+  <a href="tel:0586-47-6055" class="fcta-btn fcta-tel">
+    <svg class="fcta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/></svg>
+    <span class="fcta-label">電話で確認</span>
+  </a>
+  <a href="https://line.me/R/ti/p/@083vtrdk" class="fcta-btn fcta-line" target="_blank" rel="noopener">
+    <svg class="fcta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M12 2C6.48 2 2 6.05 2 11.08c0 3.52 2.22 6.6 5.56 8.34l-.56 2.08c-.08.3.23.56.5.39l2.55-1.57c.79.11 1.6.17 2.45.17 5.52 0 10-4.05 10-9.08C22 6.05 17.52 2 12 2zm-3 11.5H7v-5h1.5v5zm3 0h-1.5V8h1.5v5.5zm3 0H13.5v-3h1.5v3z"/></svg>
+    <span class="fcta-label">LINEで確認</span>
+  </a>
+  <a href="#assessment-form" class="fcta-btn fcta-mail" id="fcta-form-btn">
+    <svg class="fcta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    <span class="fcta-label">無料査定</span>
+  </a>
+</div>
 
 <script>
   // メニュートグル

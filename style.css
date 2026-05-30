@@ -650,6 +650,25 @@ section { padding: 60px 0; }
   text-align: center;
   margin-bottom: 24px;
 }
+.cta-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  background: #000;
+}
+.cta-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 .cta-row { display: flex; justify-content: center; }
 .cta-btn {
   display: inline-block;
@@ -1443,7 +1462,109 @@ section { padding: 60px 0; }
   text-align: center;
   font-size: 11px;
   color: var(--color-ccc);
-  padding-bottom: 80px;
+  padding-bottom: 90px; /* 固定バー分の余白 */
+}
+
+/* ===== 固定フッターCTAバー（モバイル用） ===== */
+.fixed-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 68px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(200, 16, 46, 0.5);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.7);
+  flex-direction: row;
+  gap: 0;
+}
+
+/* 各ボタン共通 */
+.fcta-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, transform 0.1s;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.fcta-btn:last-child { border-right: none; }
+
+/* 光沢ライン（上部） */
+.fcta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  pointer-events: none;
+}
+
+/* タップ時 */
+.fcta-btn:active {
+  transform: scale(0.96);
+}
+
+/* 電話ボタン — サイトメインレッド */
+.fcta-tel {
+  background: linear-gradient(160deg, #C8102E 0%, #8a0a1f 100%);
+}
+.fcta-tel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* LINEボタン — LINE緑 */
+.fcta-line {
+  background: linear-gradient(160deg, #06C755 0%, #04883b 100%);
+}
+.fcta-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* メールボタン — ダークゴールド（サイトのアクセント黒×金テイスト） */
+.fcta-mail {
+  background: linear-gradient(160deg, #b8922a 0%, #7a5e14 100%);
+}
+.fcta-mail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.fcta-icon {
+  display: block;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+}
+.fcta-label {
+  line-height: 1;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 /* ===== 固定LINEボタン ===== */
@@ -1539,9 +1660,15 @@ section { padding: 60px 0; }
   .flow-list { grid-template-columns: repeat(5, 1fr); }
   .price-table table { font-size: 14px; }
   .float-line { display: none; }
+  .fixed-cta-bar { display: none !important; } /* PC非表示 */
   /* PCのみパララックス */
   .price,
   .docs { background-attachment: fixed; }
+}
+
+/* モバイルで固定バー表示 */
+@media (max-width: 1024px) {
+  .fixed-cta-bar { display: flex; }
 }
 
 /* ============================================
