@@ -1,28 +1,32 @@
 <?php
-// CSRF簡易対策: Refererチェック
-$referer = $_SERVER['HTTP_REFERER'] ?? '';
-$allowed = ['lancru300kaitori.jp', 'localhost', '127.0.0.1'];
-$ok = false;
-foreach ($allowed as $h) {
-    if (strpos($referer, $h) !== false) { $ok = true; break; }
-}
-// POSTかつJSON acceptのみ通す
+// PHPMailer SMTP版 - さくらSMTP経由でDKIM署名付き送信
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/phpmailer/Exception.php';
+require __DIR__ . '/phpmailer/PHPMailer.php';
+require __DIR__ . '/phpmailer/SMTP.php';
+
+// CSRF簡易対策: Refererチェック（POSTのみ）
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     exit(json_encode(['ok' => false, 'error' => 'Method Not Allowed']));
 }
 
 header('Content-Type: application/json; charset=utf-8');
-// CORS（同一ドメインのみ）
-header('Access-Control-Allow-Origin: http://lancru300kaitori.jp');
+header('Access-Control-Allow-Origin: https://lancru300kaitori.jp');
 
-// 送信先
-$to      = 'carshopglory.yasuda@gmail.com';
-$from_name = 'ランクル300専門高価買取JP 査定フォーム';
-$from_addr = 'noreply@lancru300kaitori.jp';
+// ===== SMTP設定 =====
+define('SMTP_HOST', 'www2401.sakura.ne.jp');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'postmaster@lancru300kaitori.jp');
+define('SMTP_PASS', 'lancru300kaitori2026');
+define('MAIL_TO',   'carshopglory.yasuda@gmail.com');
+define('FROM_ADDR', 'postmaster@lancru300kaitori.jp');
+define('FROM_NAME', 'ランクル300専門高価買取JP 査定フォーム');
 
 // 入力取得 (JSON or POST)
-$raw = file_get_contents('php://input');
+$raw  = file_get_contents('php://input');
 $data = json_decode($raw, true);
 if (!$data) {
     $data = $_POST;
@@ -74,21 +78,43 @@ $body .= "連絡方法　：" . s($data['contact_method']) . "\n";
 $body .= "備考　　　：" . s($data['message'] ?? '') . "\n";
 $body .= "\n送信日時：" . date('Y-m-d H:i:s') . "\n";
 
-// ヘッダー
-$headers  = "From: =?UTF-8?B?" . base64_encode($from_name) . "?= <{$from_addr}>\r\n";
-$headers .= "Reply-To: " . s($data['email']) . "\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "Content-Transfer-Encoding: base64\r\n";
+// SMTP送信関数
+function sendViaSMTP(string $toAddr, string $toName, string $subject, string $body, string $replyTo = ''): bool {
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = SMTP_USER;
+        $mail->Password   = SMTP_PASS;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = SMTP_PORT;
+        $mail->CharSet    = 'UTF-8';
+        $mail->Encoding   = 'base64';
 
-// mb_send_mail（さくらはmb_send_mailが確実）
-mb_language('Japanese');
-mb_internal_encoding('UTF-8');
+        $mail->setFrom(FROM_ADDR, FROM_NAME);
+        $mail->addAddress($toAddr, $toName);
+        if ($replyTo) {
+            $mail->addReplyTo($replyTo);
+        }
 
-$result = mb_send_mail($to, $subject, $body, $headers);
+        $mail->isHTML(false);
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        error_log('PHPMailer Error: ' . $mail->ErrorInfo);
+        return false;
+    }
+}
+
+// メイン送信（業者宛）
+$result = sendViaSMTP(MAIL_TO, 'カーショップグローリー', $subject, $body, s($data['email']));
 
 if ($result) {
-    // 自動返信
+    // 自動返信（お客様宛）
     $reply_subject = '【ランクル300専門高価買取JP】査定申込を受け付けました';
     $reply_body  = s($data['name']) . " 様\n\n";
     $reply_body .= "この度はランクル300専門高価買取JPへお問い合わせいただきありがとうございます。\n";
@@ -98,18 +124,14 @@ if ($result) {
     $reply_body .= "年式：" . s($data['year']) . "\n";
     $reply_body .= "走行距離：" . s($data['mileage_range']) . "\n\n";
     $reply_body .= "ご不明な点はお電話またはLINEにてお問い合わせください。\n";
-    $reply_body .= "TEL: 0586-47-655（受付 10:00-18:00 / 火曜定休）\n\n";
+    $reply_body .= "TEL: 0586-47-6055（受付 10:00-18:00 / 火曜定休）\n\n";
     $reply_body .= "━━━━━━━━━━━━━━━━━━\n";
     $reply_body .= "ランクル300専門高価買取JP\n";
     $reply_body .= "カーショップグローリー（株式会社ライジングサン）\n";
     $reply_body .= "https://lancru300kaitori.jp/\n";
     $reply_body .= "━━━━━━━━━━━━━━━━━━\n";
 
-    $reply_headers  = "From: =?UTF-8?B?" . base64_encode($from_name) . "?= <{$from_addr}>\r\n";
-    $reply_headers .= "MIME-Version: 1.0\r\n";
-    $reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-    mb_send_mail(s($data['email']), $reply_subject, $reply_body, $reply_headers);
+    sendViaSMTP(s($data['email']), s($data['name']), $reply_subject, $reply_body);
 
     echo json_encode(['ok' => true]);
 } else {
